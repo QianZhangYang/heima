@@ -6,6 +6,29 @@ const routes = [
   {
     path: '/login',
     component: () => import('@/views/login')
+  },
+  {
+    path: '/',
+    component: () => import('@/views/layout'),
+    redirect: '/ ',
+    children: [
+      {
+        path: '/ ',
+        component: () => import(/* webpackChunkName:'base' */ '@/views/Home')
+      },
+      {
+        path: '/profile',
+        component: () => import(/* webpackChunkName:'base' */ '@/views/My')
+      },
+      {
+        path: '/qa',
+        component: () => import('@/views/QA')
+      },
+      {
+        path: '/video',
+        component: () => import('@/views/Video')
+      }
+    ]
   }
 ]
 

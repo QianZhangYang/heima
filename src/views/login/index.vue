@@ -75,7 +75,7 @@ export default {
         this.$toast.success('登录成功')
       } catch (error) {
         if (error.response && error.response.status === 400) {
-          this.$.fail(error.response.data.message)
+          this.$toast.fail(error.response.data.message)
         } else {
           this.$toast.clear()
           throw error
