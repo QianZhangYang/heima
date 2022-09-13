@@ -6,25 +6,45 @@
       </template>
     </van-nav-bar>
     <van-tabs v-model="active" swipeable>
-      <van-tab v-for="item in channel" :key="item.id" :title="item.name">
+      <van-tab
+        v-for="item in channel"
+        :key="item.id"
+        :title="item.name"
+        class="articre"
+      >
         <ArtList :id="item.id"></ArtList>
       </van-tab>
-      <span class="toutiao toutiaogengduo"></span>
+      <span class="toutiao toutiaogengduo" @click="isshow = true"></span>
     </van-tabs>
+    <van-popup
+      v-model="isshow"
+      position="bottom"
+      :style="{ height: '100%' }"
+      closeable
+      close-icon-position="top-left"
+    >
+      <channel-edit
+        @changeactive=";[(active = $event), (isshow = false)]"
+        :mychannel="channel"
+      ></channel-edit>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import ArtList from '@/views/Home/components/Artlist.vue'
+import channelEdit from '@/views/Home/components/channelEdit.vue'
 import { getChannelAPI } from '@/api'
 export default {
   components: {
-    ArtList
+    ArtList,
+    channelEdit
   },
   data() {
     return {
-      active: 2,
-      channel: []
+      active: 0,
+      channel: [],
+      isshow: false
     }
   },
   created() {
@@ -49,6 +69,21 @@ export default {
 </script>
 
 <style scoped lang="less">
+.articre {
+  height: calc(100vh - 100px - 82px - 93px);
+  overflow: auto;
+  // &: 代表当前元素他爹
+  // ::-webkit-scrollbar : 滚动槽
+  // ::-webkit-scrollbar-thumb: 滚动的滑块
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #3296fa;
+    border-radius: 5px;
+  }
+}
 .navbar {
   background-color: #3296fa;
   :deep(.van-nav-bar__title) {

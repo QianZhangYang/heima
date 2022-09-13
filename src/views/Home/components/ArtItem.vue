@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import dayjs from '@/utiles/dayjs'
 export default {
   props: {
     art: {
@@ -36,7 +37,9 @@ export default {
   methods: {},
   computed: {
     label() {
-      return `${this.art.aut_name} ${this.art.comm_count}评论 ${this.art.pubdate}`
+      return `${this.art.aut_name} ${this.art.comm_count}评论 ${dayjs(
+        this.art.pubdate
+      ).fromNow()}`
     }
   }
 }
