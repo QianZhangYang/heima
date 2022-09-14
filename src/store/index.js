@@ -5,13 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tokenObj: {}
+    tokenObj: {},
+    mychannels: []
   },
   plugins: [
     createPersistedState({
       key: 'token',
-      reducer({ tokenObj }) {
-        return { tokenObj }
+      reducer({ tokenObj, mychannels }) {
+        return { tokenObj, mychannels }
       }
     })
   ],
@@ -23,6 +24,9 @@ export default new Vuex.Store({
   mutations: {
     SET_TOKEN(state, token) {
       state.tokenObj = token
+    },
+    SET_MY_CHANNELS(state, channels) {
+      state.mychannels = channels
     }
   },
   actions: {},
