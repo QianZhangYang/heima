@@ -6,13 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tokenObj: {},
-    mychannels: []
+    mychannels: [],
+    historys: []
   },
   plugins: [
     createPersistedState({
       key: 'token',
-      reducer({ tokenObj, mychannels }) {
-        return { tokenObj, mychannels }
+      reducer({ tokenObj, mychannels, historys }) {
+        return { tokenObj, mychannels, historys }
       }
     })
   ],
@@ -27,6 +28,14 @@ export default new Vuex.Store({
     },
     SET_MY_CHANNELS(state, channels) {
       state.mychannels = channels
+    },
+    /**
+     *
+     * @param {*} state
+     * @param {*} historys 处理过后的数据 实现功能整合
+     */
+    SET_HISTROYS(state, historys) {
+      state.historys = historys
     }
   },
   actions: {},

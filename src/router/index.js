@@ -29,6 +29,10 @@ const routes = [
         component: () => import('@/views/Video')
       }
     ]
+  },
+  {
+    path: '/search',
+    component: () => import(/* webpackChunkName:'search' */ '@/views/search')
   }
 ]
 

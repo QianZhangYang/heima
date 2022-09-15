@@ -118,7 +118,7 @@ export default {
         this.userinfo = data.data
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          this.$toast.fail('参数错误')
+          this.$toast.fail('登陆超时')
         } else {
           throw error
         }
